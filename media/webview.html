@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>VSDist</title>
+</head>
+<body>
+    <h2>Create Your Triangle Plot in VS Code</h2>
+    <form id="vsdist-form">
+        <label for="burnin">Burn in rate:</label><br>
+        <input type="text" id="burnin" name="burnin" required><br><br>
+        
+        <label for="parameters">Parameters:</label><br>
+        <select id="parameters" name="parameters" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+        </select><br><br>
+
+        <button type="submit">Create Image</button>
+    </form>
+    <hr>
+    <div id="result">
+        <!-- 运行 Python 后生成的图片将在这里显示 -->
+    </div>
+
+    <script src="{{scriptUri}}"></script>
+</body>
+</html>

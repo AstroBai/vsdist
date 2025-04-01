@@ -1,0 +1,47 @@
+{
+  "name": "vsdist",
+  "displayName": "VSDist",
+  "description": "选中文件夹，填写表单后运行 Python 程序，并显示输出图片",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "activationEvents": [
+    "onCommand:vsdist.start"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vsdist.start",
+        "title": "VSDist: Run Python Process"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "vsdist.start",
+        "key": "ctrl+shift+d",
+        "when": "explorerResourceIsFolder"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "vsdist.start",
+          "when": "explorerResourceIsFolder"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0",
+    "vscode": "^1.1.37",
+    "@types/node": "^14.0.0",
+    "@types/vscode": "^1.60.0"
+  }
+}
