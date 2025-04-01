@@ -30,6 +30,14 @@
             size="50"
             required><br><br>
 
+            <label for="legend">Legend:</label><br>
+            <input
+            type="text"
+            id="legend"
+            name="legend"
+            placeholder="e.g. Planck2018TTTEEE"
+            required><br><br>
+
             <label for="color">Color:</label><br>
             <input 
             type="color" 
@@ -37,6 +45,46 @@
             name="color" 
             value="#000000"
             required><br><br>
+
+            <label for="font">Font:</label><br>
+            <input
+            type="text"
+            id="font"
+            name="font"
+            value="Serif">
+            <br><br>
+
+            <label for="fontsize">Font size:</label><br>
+            <input
+            type="number"
+            id="fontsize"
+            name="fontsize"
+            min="1"
+            max="100"
+            value="30">
+            <br><br>
+
+            <label for="linewidth">Line Width:</label><br>
+            <input
+            type="number"
+            id="linewidth"
+            name="linewidth"
+            min="1"
+            max="10"
+            value="2">
+            <br><br>
+
+            <label for="alpha">Alpha:</label><br>
+            <input
+            type="number"
+            id="alpha"
+            name="alpha"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.95">
+            <br><br>
+
 
             <button type="submit">Create Image</button>
         
