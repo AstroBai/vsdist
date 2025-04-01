@@ -4,7 +4,7 @@
   "description": "选中文件夹，填写表单后运行 Python 程序，并显示输出图片",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.60.0"
+    "vscode": "^1.75.0"
   },
   "main": "./out/extension.js",
   "contributes": {

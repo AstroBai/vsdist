@@ -6,10 +6,10 @@
 </head>
 <body>
     <h2>Create Your Triangle Plot in VS Code</h2>
-
+    <form id="vsdist-form">
     <fieldset>
-        <legend>Basic Settings</legend>
-        <form id="vsdist-form">
+        <legend>Settings</legend>
+        
             <label for="burnin">Burn in rate:</label><br>
             <input 
             type="number" 
@@ -39,14 +39,17 @@
             required><br><br>
 
             <button type="submit">Create Image</button>
-        </form>
+        
     </fieldset>
-
+    </form>
     
     <hr>
+    <fieldset>
+    <legend>Result</legend>
     <div id="result">
         <!-- 运行 Python 后生成的图片将在这里显示 -->
     </div>
+    </fieldset>
 
     <script src="{{scriptUri}}"></script>
 </body>
