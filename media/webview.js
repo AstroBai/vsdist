@@ -5,7 +5,13 @@ document.getElementById('vsdist-form').addEventListener('submit', event => {
     const formData = {
         burnin: document.getElementById('burnin').value,
         parameters: document.getElementById('parameters').value.split(',').map(param => param.trim()),
+        legend: document.getElementById('legend').value,
         color: document.getElementById('color').value,
+        font: document.getElementById('font').value,
+        fontsize: document.getElementById('fontsize').value,
+        linewidth: document.getElementById('linewidth').value,
+        alpha: document.getElementById('alpha').value,
+        filled: document.getElementById('filled').checked,
     };
 
     vscode.postMessage({ command: 'submit', data: formData });

@@ -1,20 +1,43 @@
+import warnings
+warnings.filterwarnings('ignore')
 import sys
 import json
 import base64
 import matplotlib.pyplot as plt
 import io
+import getdist
+import getdist.plots as plots
+import os
 
 def generate_image(data):
-    fig, ax = plt.subplots()
     
-    # 绘制文本信息
-    ax.text(0.5, 0.7, f'Burn-in rate: {data}', fontsize=15, ha='center', va='center')
+    folderpath = data['folderpath']
+    burnin = data['burnin'] 
+    parameters = data['parameters'] 
+    legend = data['legend']
+    color = data['color']
+    font = data['font']
+    fontsize = data['fontsize']
+    linewidth = float(data['linewidth'])
+    alpha = float(data['alpha'])
+    filled = data['filled']
     
+    g = plots.get_subplot_plotter(width_inch=10)
+    g.settings.linewidth_contour = linewidth
+    g.settings.linewidth = linewidth
+    g.settings.fontsize = fontsize
+    g.settings.alpha_filled_add = alpha
+
+    plt.rc('font', family=font)
+    plt.rcParams.update({'font.size': fontsize})
     
-    ax.set_title("Generated Plot")
-    ax.set_xticks([])
-    ax.set_yticks([])
-    ax.set_frame_on(False)
+    for file in os.listdir(folderpath):
+        if file.endswith(".updated.yaml"):
+            update_files = file.replace(".updated.yaml", "")
+           
+    sample_file = folderpath + '/' + update_files        
+    samples = getdist.mcsamples.loadMCSamples(sample_file, settings={'ignore_rows': burnin})
+    g.triangle_plot(samples, parameters, filled=filled, legend_labels=legend, contour_colors=[color])
     
     # 保存图片到内存
     buf = io.BytesIO()

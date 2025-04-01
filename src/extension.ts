@@ -6,8 +6,8 @@ import * as cp from 'child_process';
 export function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand('vsdist.start', (uri: vscode.Uri) => {
 
-        const folderPath = uri && fs.statSync(uri.fsPath).isDirectory() ? uri.fsPath : undefined;
-        if (!folderPath) {
+        const folderpath = uri && fs.statSync(uri.fsPath).isDirectory() ? uri.fsPath : undefined;
+        if (!folderpath) {
             vscode.window.showErrorMessage("请在资源管理器中选中一个文件夹。");
             return;
         }
@@ -35,13 +35,20 @@ export function activate(context: vscode.ExtensionContext) {
 
                     const burnin = message.data.burnin;
 					const parameters = message.data.parameters;
+					const legend = message.data.legend;
 					const color = message.data.color;
+					const font = message.data.font;
+					const fontsize = message.data.fontsize;
+					const linewidth = message.data.linewidth;
+					const alpha = message.data.alpha;
+					const filled = message.data.filled;
+
 
                     // 运行 Python 处理数据
                     const pythonPath = path.join(context.extensionPath, 'media', 'process.py');
                     const process = cp.spawn('python3', [pythonPath]);
 
-                    process.stdin.write(JSON.stringify({ folderPath, burnin, parameters, color }));
+                    process.stdin.write(JSON.stringify({ folderpath, burnin, parameters, color, font, fontsize, linewidth, alpha, filled, legend }));
                     process.stdin.end();
 
                     let outputData = '';
