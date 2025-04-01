@@ -8,6 +8,7 @@ import io
 import getdist
 import getdist.plots as plots
 import os
+from contextlib import redirect_stdout, redirect_stderr
 
 def generate_image(data):
     
@@ -33,8 +34,13 @@ def generate_image(data):
         if file.endswith(".updated.yaml"):
             update_files = file.replace(".updated.yaml", "")
            
-    sample_file = folderpath + '/' + update_files        
-    samples = getdist.mcsamples.loadMCSamples(sample_file, settings={'ignore_rows': burnin})
+    sample_file = folderpath + '/' + update_files    
+    
+    with warnings.catch_warnings(), io.StringIO() as f, io.StringIO() as e:
+        warnings.simplefilter("ignore") 
+        with redirect_stdout(f), redirect_stderr(e): 
+            samples = getdist.mcsamples.loadMCSamples(sample_file, settings={'ignore_rows': burnin})
+            
     g.triangle_plot(samples, parameters, filled=filled, legend_labels=[legend], contour_colors=[color])
     
     buf = io.BytesIO()

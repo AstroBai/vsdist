@@ -33,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
         panel.webview.onDidReceiveMessage(
             (message) => {
                 if (message.command === 'submit') {
-
+                    
                     const burnin = message.data.burnin;
 					const parameters = message.data.parameters;
 					const legend = message.data.legend;
@@ -64,7 +64,7 @@ export function activate(context: vscode.ExtensionContext) {
                                 const result = JSON.parse(outputData);
                                 panel.webview.postMessage({ command: 'displayImage', image: result.image });
                             } catch (err) {
-
+                                vscode.window.showWarningMessage(`Some strange things happened (please report this as a issue): ${err}`);
                             }
                         } else {
                             vscode.window.showErrorMessage("Python Failed to Run.");
