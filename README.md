@@ -10,6 +10,6 @@ After installing the extension, you can analyse a chain folder by right-clicking
 
 ![preview](./images/preview.png)
 
-At most cases, you only need to fill in the parameters you are interested in, then click the "Plot!" button to generate the plots. The plots will be shown in the result panel.
+In most cases, you only need to fill in the parameters you are interested in, then click the "Plot!" button to generate the plots. The plots will be shown in the result panel.
 
 If you have done all the things correctly, but the plots are not showing up, please report the issue which will help me improve the extension.
