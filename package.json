@@ -37,7 +37,8 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+    "postinstall": "python -m pip install -r requirements.txt"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
