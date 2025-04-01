@@ -35,9 +35,10 @@ def generate_image(data):
            
     sample_file = folderpath + '/' + update_files        
     samples = getdist.mcsamples.loadMCSamples(sample_file, settings={'ignore_rows': burnin})
-    g.triangle_plot(samples, parameters, filled=filled, legend_labels=legend, contour_colors=[color])
+    g.triangle_plot(samples, parameters, filled=filled, legend_labels=[legend], contour_colors=[color])
     
     buf = io.BytesIO()
+    plt.tight_layout()
     plt.savefig(buf, format='png')
     buf.seek(0)
     

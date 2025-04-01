@@ -2,6 +2,7 @@
   "name": "vsdist",
   "displayName": "VSDist",
   "description": "GetDist Tool for Visual Studio Code",
+  "icon": "images/icon.png",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.75.0"
@@ -11,7 +12,7 @@
     "commands": [
       {
         "command": "vsdist.start",
-        "title": "VSDist: Analyse This Folder with GetDist"
+        "title": "VSDist: Analyse Chains"
       }
     ],
     "keybindings": [
