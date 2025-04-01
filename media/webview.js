@@ -3,8 +3,11 @@ const vscode = acquireVsCodeApi();
 document.getElementById('vsdist-form').addEventListener('submit', event => {
     event.preventDefault();
     const formData = {
-        burnin: document.getElementById('burnin').value
+        burnin: document.getElementById('burnin').value,
+        parameters: document.getElementById('parameters').value.split(',').map(param => param.trim()),
+        color: document.getElementById('color').value,
     };
+
     vscode.postMessage({ command: 'submit', data: formData });
 });
 

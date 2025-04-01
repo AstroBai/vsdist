@@ -6,24 +6,43 @@
 </head>
 <body>
     <h2>Create Your Triangle Plot in VS Code</h2>
-    <form id="vsdist-form">
-        <label for="burnin">Burn in rate:</label><br>
-        <input type="text" id="burnin" name="burnin" required><br><br>
-        
-        <label for="parameters">Parameters:</label><br>
-        <select id="parameters" name="parameters" required>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-        </select><br><br>
 
-        <button type="submit">Create Image</button>
-    </form>
+    <fieldset>
+        <legend>Basic Settings</legend>
+        <form id="vsdist-form">
+            <label for="burnin">Burn in rate:</label><br>
+            <input 
+            type="number" 
+            min="0" 
+            max="1" 
+            step="0.01" 
+            id="burnin" 
+            name="burnin" 
+            placeholder="e.g. 0.3"
+            required><br><br>
+            
+            <label for="parameters">Parameters: (seperate by ",")</label><br>
+            <input 
+            type="text" 
+            id="parameters" 
+            name="parameters" 
+            placeholder="e.g. omegam,omegab,H0,ns"
+            size="50"
+            required><br><br>
+
+            <label for="color">Color:</label><br>
+            <input 
+            type="color" 
+            id="color" 
+            name="color" 
+            value="#000000"
+            required><br><br>
+
+            <button type="submit">Create Image</button>
+        </form>
+    </fieldset>
+
+    
     <hr>
     <div id="result">
         <!-- 运行 Python 后生成的图片将在这里显示 -->

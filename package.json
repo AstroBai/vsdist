@@ -20,7 +20,6 @@
     "keybindings": [
       {
         "command": "vsdist.start",
-        "key": "ctrl+shift+d",
         "when": "explorerResourceIsFolder"
       }
     ],
