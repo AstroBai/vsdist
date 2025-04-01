@@ -6,9 +6,6 @@
   "engines": {
     "vscode": "^1.60.0"
   },
-  "activationEvents": [
-    "onCommand:vsdist.start"
-  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
