@@ -7,7 +7,6 @@ document.getElementById('vsdist-form').addEventListener('submit', event => {
         parameters: document.getElementById('parameters').value.split(',').map(param => param.trim()),
         legend: document.getElementById('legend').value,
         color: document.getElementById('color').value,
-        font: document.getElementById('font').value,
         fontsize: document.getElementById('fontsize').value,
         linewidth: document.getElementById('linewidth').value,
         alpha: document.getElementById('alpha').value,

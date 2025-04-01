@@ -1,7 +1,7 @@
 {
   "name": "vsdist",
   "displayName": "VSDist",
-  "description": "选中文件夹，填写表单后运行 Python 程序，并显示输出图片",
+  "description": "GetDist Tool for Visual Studio Code",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.75.0"
@@ -11,7 +11,7 @@
     "commands": [
       {
         "command": "vsdist.start",
-        "title": "VSDist: Run Python Process"
+        "title": "VSDist: Analyse This Folder with GetDist"
       }
     ],
     "keybindings": [

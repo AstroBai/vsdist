@@ -8,7 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         const folderpath = uri && fs.statSync(uri.fsPath).isDirectory() ? uri.fsPath : undefined;
         if (!folderpath) {
-            vscode.window.showErrorMessage("请在资源管理器中选中一个文件夹。");
+            vscode.window.showErrorMessage("Please select a folder.");
             return;
         }
 
@@ -25,6 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
         const scriptUri = panel.webview.asWebviewUri(vscode.Uri.file(
             path.join(context.extensionPath, 'media', 'webview.js')
         ));
+		
 
         htmlContent = htmlContent.replace('{{scriptUri}}', scriptUri.toString());
         panel.webview.html = htmlContent;
@@ -37,18 +38,15 @@ export function activate(context: vscode.ExtensionContext) {
 					const parameters = message.data.parameters;
 					const legend = message.data.legend;
 					const color = message.data.color;
-					const font = message.data.font;
 					const fontsize = message.data.fontsize;
 					const linewidth = message.data.linewidth;
 					const alpha = message.data.alpha;
 					const filled = message.data.filled;
 
-
-                    // 运行 Python 处理数据
                     const pythonPath = path.join(context.extensionPath, 'media', 'process.py');
                     const process = cp.spawn('python3', [pythonPath]);
 
-                    process.stdin.write(JSON.stringify({ folderpath, burnin, parameters, color, font, fontsize, linewidth, alpha, filled, legend }));
+                    process.stdin.write(JSON.stringify({ folderpath, burnin, parameters, color, fontsize, linewidth, alpha, filled, legend }));
                     process.stdin.end();
 
                     let outputData = '';
@@ -57,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
                     });
 
                     process.stderr.on('data', (data) => {
-                        console.error(`Python 错误: ${data.toString()}`);
+                        console.error(`Python Failed: ${data.toString()}`);
                     });
 
                     process.on('close', (code) => {
@@ -66,10 +64,10 @@ export function activate(context: vscode.ExtensionContext) {
                                 const result = JSON.parse(outputData);
                                 panel.webview.postMessage({ command: 'displayImage', image: result.image });
                             } catch (err) {
-                                vscode.window.showErrorMessage("处理 Python 输出时出错！");
+
                             }
                         } else {
-                            vscode.window.showErrorMessage("Python 运行失败！");
+                            vscode.window.showErrorMessage("Python Failed to Run.");
                         }
                     });
                 }

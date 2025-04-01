@@ -3,109 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <title>VSDist</title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #444;
+            font-size: 26px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 100%;
+            border: 2px solid #ccc;
+        }
+
+        fieldset {
+            border: 2px solid #ccc;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        legend {
+            font-size: 18px;
+            font-weight: bold;
+            color: #444;
+            background: #e0e0e0;
+            padding: 3px 10px;
+            border-radius: 5px;
+        }
+
+        .settings-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .settings-grid label {
+            width: 48%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inline-group {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .inline-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: 20px;
+        }
+
+        input {
+            padding: 8px;
+            border: 1px solid #bbb;
+            border-radius: 4px;
+            font-size: 14px;
+            background: #ffffff;
+            color: #333;
+        }
+
+        input[type="color"] {
+            height: 40px;
+            width: 50px;
+        }
+
+        input[type="checkbox"] {
+            width: 40px;
+        }
+
+        button {
+            background-color: #666;
+            color: white;
+            font-size: 16px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+
+        #result {
+            text-align: center;
+            font-style: italic;
+            color: #444;
+            padding: 10px;
+            min-height: 50px;
+            background: #f0f0f0;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Create Your Triangle Plot in VS Code</h2>
-    <form id="vsdist-form">
-    <fieldset>
-        <legend>Settings</legend>
-        
-            <label for="burnin">Burn in rate:</label><br>
-            <input 
-            type="number" 
-            min="0" 
-            max="1" 
-            step="0.01" 
-            id="burnin" 
-            name="burnin" 
-            value="0.3"
-            required><br><br>
-            
-            <label for="parameters">Parameters: (seperate by ",")</label><br>
-            <input 
-            type="text" 
-            id="parameters" 
-            name="parameters" 
-            placeholder="e.g. omegam,omegab,H0,ns"
-            size="50"
-            required><br><br>
-
-            <label for="legend">Legend:</label><br>
-            <input
-            type="text"
-            id="legend"
-            name="legend"
-            placeholder="e.g. Planck2018TTTEEE"
-            required><br><br>
-
-            <label for="color">Color:</label><br>
-            <input 
-            type="color" 
-            id="color" 
-            name="color" 
-            value="#1f77b4"
-            required><br><br>
-
-            <label for="font">Font:</label><br>
-            <input
-            type="text"
-            id="font"
-            name="font"
-            value="Serif">
-            <br><br>
-
-            <label for="fontsize">Font size:</label><br>
-            <input
-            type="number"
-            id="fontsize"
-            name="fontsize"
-            min="1"
-            max="100"
-            value="30">
-            <br><br>
-
-            <label for="linewidth">Line Width:</label><br>
-            <input
-            type="number"
-            id="linewidth"
-            name="linewidth"
-            min="1"
-            max="10"
-            value="2">
-            <br><br>
-
-            <label for="alpha">Alpha:</label><br>
-            <input
-            type="number"
-            id="alpha"
-            name="alpha"
-            min="0"
-            max="1"
-            step="0.01"
-            value="0.95">
-            <br><br>
-
-            <label for="filled">Filled:</label><br>
-            <input
-            type="checkbox"
-            id="filled"
-            name="filled"
-            value="true">
-            <br><br>
-
-
-            <button type="submit">Create Image</button>
-        
-    </fieldset>
-    </form>
+    <h2>VSDist - GetDist Plotter in Visual Studio Code</h2>
     
-    <hr>
-    <fieldset>
-    <legend>Result</legend>
-    <div id="result">
-        <!-- 运行 Python 后生成的图片将在这里显示 -->
+    <div class="container">
+        <form id="vsdist-form">
+        <fieldset>
+            <legend>Settings</legend>
+            
+            <div class="settings-grid">
+                <label for="burnin">Burn in:
+                    <input type="number" min="0" max="1" step="0.01" id="burnin" name="burnin" value="0.3" required>
+                </label>
+                
+                <label for="parameters">Parameters:
+                    <input type="text" id="parameters" name="parameters" placeholder="e.g. omegam,omegab,H0,ns" required>
+                </label>
+                
+                <label for="legend">Legend:
+                    <input type="text" id="legend" name="legend" placeholder="e.g. Planck2018TTTEEE" required>
+                </label>
+                
+                <label for="fontsize">Font size:
+                    <input type="number" id="fontsize" name="fontsize" min="1" max="100" value="30">
+                </label>
+                
+                <label for="linewidth">Line Width:
+                    <input type="number" id="linewidth" name="linewidth" min="1" max="10" value="2">
+                </label>
+                
+                <label for="alpha">Alpha:
+                    <input type="number" id="alpha" name="alpha" min="0" max="1" step="0.01" value="0.95">
+                </label>
+                
+                <div class="inline-group">
+                    <label for="color">Color:
+                        <input type="color" id="color" name="color" value="#006fed">
+                    </label>
+                    <label for="filled">Filled:
+                        <input type="checkbox" id="filled" name="filled" checked>
+                    </label>
+                </div>
+            </div>
+            
+            <button type="submit">Plot!</button>
+            <p style="text-align: center; font-size: 14px; color: #444;">
+                (It may take a few seconds to generate the image if the chains are massive.)
+            </p>
+        </fieldset>
+        </form>
+        
+        <br>
+
+        <fieldset>
+            <legend>Result</legend>
+            <div id="result">
+                <!-- Plot will be displayed here -->
+            </div>
+        </fieldset>
     </div>
-    </fieldset>
 
     <script src="{{scriptUri}}"></script>
 </body>
