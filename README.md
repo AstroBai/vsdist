@@ -16,9 +16,12 @@ In most cases, you only need to fill in the parameters you are interested in, th
 
 If you have done all the things correctly, but the plots are not showing up, please report the issue which will help me improve the extension.
 
-# TBD Features
+# TBD Features in Version 1.0
 
 - Add analysis for marge-stats and like-stats
+- Add detailed trajectory of each chain
+- Add plots with other samples
+- Add more settings
 
 # Some Notes
 
