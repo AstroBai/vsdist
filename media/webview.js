@@ -19,13 +19,20 @@ document.getElementById('vsdist-form').addEventListener('submit', event => {
 window.addEventListener('message', event => {
     const message = event.data;
     switch (message.command) {
-        case 'displayImage':
+        case 'displayImage': {
             const img = document.createElement('img');
             img.src = 'data:image/png;base64,' + message.image;
             img.style.maxWidth = '100%';
+
             const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = "";
+            resultDiv.innerHTML = ""; 
             resultDiv.appendChild(img);
             break;
+        }
+        case 'displayText': {
+            const outputDiv = document.getElementById('outputText');
+            outputDiv.innerText = message.text;
+            break;
+        }
     }
 });

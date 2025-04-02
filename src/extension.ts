@@ -65,6 +65,7 @@ export function activate(context: vscode.ExtensionContext) {
                             try {
                                 const result = JSON.parse(outputData);
                                 panel.webview.postMessage({ command: 'displayImage', image: result.image });
+                                panel.webview.postMessage({ command: 'displayText', text: result.text });
                             } catch (err) {
                                 vscode.window.showWarningMessage(`Some strange things happened but have nothing to do with Python (please report this as a issue): ${err}`);
                             }
