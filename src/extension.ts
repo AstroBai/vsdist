@@ -43,6 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
 					const alpha = message.data.alpha;
 					const filled = message.data.filled;
 
+                    vscode.window.showInformationMessage(`Python Process Begins.`);
                     const pythonPath = path.join(context.extensionPath, 'media', 'process.py');
                     const process = cp.spawn('python3', [pythonPath]);
 
@@ -60,11 +61,12 @@ export function activate(context: vscode.ExtensionContext) {
 
                     process.on('close', (code) => {
                         if (code === 0) {
+                            vscode.window.showInformationMessage(`Python Process Finished.`);
                             try {
                                 const result = JSON.parse(outputData);
                                 panel.webview.postMessage({ command: 'displayImage', image: result.image });
                             } catch (err) {
-                                vscode.window.showWarningMessage(`Some strange things happened (please report this as a issue): ${err}`);
+                                vscode.window.showWarningMessage(`Some strange things happened but have nothing to do with Python (please report this as a issue): ${err}`);
                             }
                         } else {
                             vscode.window.showErrorMessage("Python Failed to Run.");
