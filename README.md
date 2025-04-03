@@ -8,6 +8,8 @@ Github Repository: https://github.com/astrobai/vsdist.
 
 # Usage
 
+- You probably need to manually install getdist to use the extension.
+
 After installing the extension, you can analyse a chain folder by right-clicking on it and selecting the command "VSDist: Analyse Chains". Then the extension will show up a new tab with some simple settings.
 
 ![preview_settings](./images/preview_settings.png)

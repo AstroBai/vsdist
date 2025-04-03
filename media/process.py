@@ -9,7 +9,7 @@ import getdist
 import getdist.plots as plots
 import os
 from contextlib import redirect_stdout, redirect_stderr
-from tabulate import tabulate
+
 
 class getdist_analysis:
     def __init__(self, data):
