@@ -91,9 +91,9 @@ class getdist_analysis:
             table_data += f"""
             <tr>
                 <td>{param}</td>
-                <td>{mean:.2f}</td>
-                <td>[{lower68:.2f}, {upper68:.2f}]</td>
-                <td>[{lower95:.2f}, {upper95:.2f}]</td>
+                <td>{mean:.4f}</td>
+                <td>[{lower68:.4f}, {upper68:.4f}]</td>
+                <td>[{lower95:.4f}, {upper95:.4f}]</td>
             </tr>
             """
 
