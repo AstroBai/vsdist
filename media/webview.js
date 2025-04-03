@@ -31,7 +31,7 @@ window.addEventListener('message', event => {
         }
         case 'displayText': {
             const outputDiv = document.getElementById('outputText');
-            outputDiv.innerText = message.text;
+            outputDiv.innerHTML= message.text;
             break;
         }
     }

@@ -9,6 +9,7 @@ import getdist
 import getdist.plots as plots
 import os
 from contextlib import redirect_stdout, redirect_stderr
+from tabulate import tabulate
 
 class getdist_analysis:
     def __init__(self, data):
@@ -67,12 +68,48 @@ class getdist_analysis:
     
     def generate_text(self):
         """
-        Generate stats text using getdist
+        Generate an HTML table for displaying stats in a well-formatted way.
         """
         
-        marge_stats = str(self.samples.getTable().tableTex())
-        
-        return marge_stats
+        marge_stats = self.samples.getMargeStats()
+        table_data = ""
+
+        for param in self.parameters:
+            stat = marge_stats.parWithName(param)
+            mean = stat.mean if stat else None
+            limits = stat.limits if stat and hasattr(stat, "limits") else []
+
+            if len(limits) >= 2:
+                lower68, upper68 = limits[0].lower, limits[0].upper
+                lower95, upper95 = limits[1].lower, limits[1].upper
+            elif len(limits) == 1:
+                lower68, upper68 = limits[0].lower, limits[0].upper
+                lower95, upper95 = "N/A", "N/A"
+            else:
+                lower68 = upper68 = lower95 = upper95 = "N/A"
+
+            table_data += f"""
+            <tr>
+                <td>{param}</td>
+                <td>{mean:.2f}</td>
+                <td>[{lower68:.2f}, {upper68:.2f}]</td>
+                <td>[{lower95:.2f}, {upper95:.2f}]</td>
+            </tr>
+            """
+
+        html_table = f"""
+        <table border="1" style="border-collapse: collapse; text-align: center; width: 100%;">
+            <tr style="background-color: #f2f2f2; font-weight: bold;">
+                <th>Parameter</th>
+                <th>Mean</th>
+                <th>68% CL</th>
+                <th>95% CL</th>
+            </tr>
+            {table_data}
+        </table>
+        """
+
+        return html_table
         
         
         

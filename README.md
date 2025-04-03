@@ -10,15 +10,16 @@ Github Repository: https://github.com/astrobai/vsdist.
 
 After installing the extension, you can analyse a chain folder by right-clicking on it and selecting the command "VSDist: Analyse Chains". Then the extension will show up a new tab with some simple settings.
 
-![preview](./images/preview.png)
+![preview_settings](./images/preview_settings.png)
 
-In most cases, you only need to fill in the parameters you are interested in, then click the "Plot!" button to generate the plots. The plots will be shown in the result panel.
+In most cases, you only need to fill in the parameters you are interested in, then click the "Analyse!" button to generate the plots. The plots and marge-stats will be shown in the result panel.
+
+![preview_results](./images/preview_results.png)
 
 If you have done all the things correctly, but the plots are not showing up, please report the issue which will help me improve the extension.
 
-# TBD Features in Version 1.0 (Current Version: 0.0.3)
+# TBD Features in Version 1.0 (Current Version: 0.1.0)
 
-- Add analysis for marge-stats and like-stats
 - Add detailed trajectory of each chain
 - Add plots with other samples
 - Add more settings
