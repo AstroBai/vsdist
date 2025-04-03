@@ -6,7 +6,7 @@
   "publisher": "JiachenBai",
   "repository": "https://github.com/astrobai/vsdist",
   "icon": "images/icon.png",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "engines": {
     "vscode": "^1.75.0"
   },

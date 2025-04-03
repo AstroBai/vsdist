@@ -39,6 +39,14 @@ class getdist_analysis:
             with redirect_stdout(f), redirect_stderr(e): 
                 self.samples = getdist.mcsamples.loadMCSamples(sample_file, settings={'ignore_rows': self.burnin, 'names': self.parameters})
 
+    def format_value(self, value):
+        """ 
+        format values to avoid 0.0000
+        """
+        if abs(value) < 0.001:  
+            return f"{value:.4e}"
+        else: 
+            return f"{value:.4f}"
 
     def generate_image(self):
         
@@ -91,9 +99,9 @@ class getdist_analysis:
             table_data += f"""
             <tr>
                 <td>{param}</td>
-                <td>{mean:.4f}</td>
-                <td>[{lower68:.4f}, {upper68:.4f}]</td>
-                <td>[{lower95:.4f}, {upper95:.4f}]</td>
+                <td>{self.format_value(mean)}</td>
+                <td>[{self.format_value(lower68)}, {self.format_value(upper68)}]</td>
+                <td>[{self.format_value(lower95)}, {self.format_value(upper95)}]</td>
             </tr>
             """
 
